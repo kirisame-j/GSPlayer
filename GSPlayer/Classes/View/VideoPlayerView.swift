@@ -160,11 +160,11 @@ open class VideoPlayerView: UIView {
     ///
     /// - Parameter url: Can be a local or remote URL
     open func play(for url: URL) {
-        guard playerURL != url else {
-            pausedReason = .waitingKeepUp
-            player?.play()
-            return
-        }
+//         guard playerURL != url else {
+//             pausedReason = .waitingKeepUp
+//             player?.play()
+//             return
+//         }
         
         observe(player: nil)
         observe(playerItem: nil)
@@ -205,6 +205,10 @@ open class VideoPlayerView: UIView {
         replayCount = resetCount ? 0 : replayCount + 1
         player?.seek(to: .zero)
         resume()
+    }
+    
+    open func cancelPlayerItem() {
+        player?.replaceCurrentItem(with: nil)
     }
     
     /// Continue playing video.
